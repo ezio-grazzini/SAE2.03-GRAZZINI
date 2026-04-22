@@ -22,7 +22,7 @@ MovieList.format = function (data) {
   for (let item of data){
     let li = template2;
     li = li.replace("{{name}}", item.name);
-    li = li.replace("{{img}}", item.image);
+    li = li.replace("{{img}}", "../server/images/" + item.image);
 
     liste = liste += li;
   }
