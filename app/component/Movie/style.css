@@ -1,0 +1,22 @@
+.movie {
+    .movie__list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem 3rem;
+        text-align: center;
+        font-family: var(--ff-sans);
+    }
+
+    .movie__list-img {
+        width: 100%;
+        aspect-ratio: 9 / 14;
+        object-fit: cover;
+    }
+
+    @media (min-width: 44rem) {
+        .movie__list {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
