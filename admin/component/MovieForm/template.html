@@ -1,6 +1,6 @@
-<div class="menuform">
-    <h4 class="menuform__title">Ajouter un film</h4>
-    <form class="menuform__form">
+<div class="movieform">
+    <h4 class="movieform__title">Ajouter un film</h4>
+    <form class="movieform__form">
         <input required type="text" name="titre" title="titre du film">
         <input required type="text" name="réalisateur" title="Réalisateur du film">
         <input required type="date" name="année" title="Année de sortie du film">
@@ -21,6 +21,8 @@
 
         <input required type="text" name="url" title="URL du trailer">
         <input required type="text" name="restriction_age" title="URL du trailer">
+
+        <input onClick="{{handler}}" type="button" value="update" name="todo">
 
     </form>
 </div>

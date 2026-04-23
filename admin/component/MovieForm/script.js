@@ -1,35 +1,12 @@
-let templateFile = await fetch("./component/Movie/template.html");
+let templateFile = await fetch("./component/MovieForm/template.html");
 let template = await templateFile.text();
 
-let MovieList = {};
+let MovieForm = {};
 
-// MovieList.formatOneMenu = function(name, img){
-//     let li = template2;
-//     console.log(name)
-//     li = li.replace("{{name}}", name);
-//     li = li.replace("{{img}}", img);
-//     return li;
-// }
-
-MovieList.format = function (data) {
+MovieForm.format = function (handler) {
   let html = template;
-
-  let liste="";
-
-  for (let item of data){
-    let li = template2;
-    li = li.replace("{{name}}", item.name);
-    li = li.replace("{{img}}", "../server/images/" + item.image);
-
-    liste = liste += li;
-  }
-  html = html.replace("{{movies}}", liste)
+  html = html.replace('{{handler}}', handler);
   return html;
 };
 
-MovieList.render = function(where, what){
-    let element = document.querySelector(where)
-    element.innerHTML += MovieList.format(what);
-}
-
-export { MovieList };
+export { MovieForm };
