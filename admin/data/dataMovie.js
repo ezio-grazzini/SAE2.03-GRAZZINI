@@ -21,7 +21,7 @@ DataMovie.add = async function(fdata) {
         method: "POST",
         body: fdata
     };
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=addMovie")
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=addMovie", config)
     let data = await answer.json();
     return data;
 }
