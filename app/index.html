@@ -40,6 +40,12 @@
       );
     };
 
+    C.handlerDetail = async function(id){
+      let data = await DataMovie.requestDetails();
+
+
+    }
+
     C.start = function () {
       V.renderNavBar("C.handlerAbout()");
       C.getMovie()

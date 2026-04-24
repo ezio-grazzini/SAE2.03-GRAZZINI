@@ -1,3 +1,7 @@
+body{
+    font-family: var(--ff-sans);
+}
+
 .movieform__form{
     display: flex;
     flex-direction: column;
@@ -5,3 +9,4 @@
     gap: 1rem;
     max-width: 40rem;
 }
+
