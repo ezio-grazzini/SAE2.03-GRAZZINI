@@ -24,6 +24,7 @@
  */
 require("controller.php");
 
+
 /**
  * Vérifie si la variable 'todo' est définie dans la requête.
  * 
@@ -31,6 +32,8 @@ require("controller.php");
  * via une requête HTTP. 
  * Si ce paramètre est présent, le code à l'intérieur du bloc conditionnel sera exécuté.
  */
+
+
 if ( isset($_REQUEST['todo']) ){
 
   /**

@@ -1,28 +1,29 @@
 <div class="movieform">
     <h4 class="movieform__title">Ajouter un film</h4>
     <form class="movieform__form">
-        <input required type="text" name="titre" title="titre du film">
-        <input required type="text" name="réalisateur" title="Réalisateur du film">
-        <input required type="date" name="année" title="Année de sortie du film">
-        <input required type="number" name="durée" title="durée (minute)">
-        <input required type="text" name="description" title="Description ou Synopsis">
+        <input required placeholder="Titre du film"  type="text" name="name" title="titre du film">
+        <input required placeholder="Réalisateur" type="text" name="director" title="Réalisateur du film">
+        <input required placeholder="Année de sortie" type="number" name="year" title="Année de sortie du film">
+        <input required placeholder="Durée du film (en minutes)" type="number" name="length" title="durée (minute)">
+        <input required placeholder="Description" type="text" name="description" title="Description ou Synopsis">
 
-        <select name="category">
-            <option value="Action">Action</option>
-            <option value="Comédie">Comédie</option>
-            <option value="Drame">Drame</option>
-            <option value="Science-fiction">Science-fiction</option>
-            <option value="Animation">Animation</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Horreur">Horreur</option>
-            <option value="Aventure">Fantaisie</option>
-            <option value="Documentaire">Documentaire</option>
+        <select name="id_category">
+            <option value=1>Action</option>
+            <option value=2>Comédie</option>
+            <option value=3>Drame</option>
+            <option value=4>Science-fiction</option>
+            <option value=5>Animation</option>
+            <option value=6>Thriller</option>
+            <option value=7>Horreur</option>
+            <option value=8>Fantaisie</option>
+            <option value=9>Documentaire</option>
         </select>
 
-        <input required type="text" name="url" title="URL du trailer">
-        <input required type="text" name="restriction_age" title="URL du trailer">
+        <input required placeholder="Nom du fichier de l'affiche" type="text" name="image" title="Image">
+        <input required placeholder="URL du trailer" type="text" name="trailer" title="URL du trailer">
+        <input required placeholder="Age minimum" type="number" name="min_age" title="restriction age">
 
-        <input onClick="{{handler}}" type="button" value="update" name="todo">
+        <input onClick="{{handler}}" type="submit" value="Update" name="todo">
 
     </form>
 </div>
