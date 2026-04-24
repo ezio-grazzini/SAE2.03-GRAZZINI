@@ -3,6 +3,13 @@ let HOST_URL = "..";//"http://mmi.unilim.fr/~????"; // CHANGE THIS TO MATCH YOUR
 
 let DataMovie = {};
 
+DataMovie.requestCategories = async function(){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=getcategories");
+    let data = await answer.json();
+    return data;
+}
+
+
 DataMovie.add = async function(fdata) {
     let config = {
         method: "POST",

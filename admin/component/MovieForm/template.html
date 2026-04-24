@@ -8,22 +8,14 @@
         <input required placeholder="Description" type="text" name="description" title="Description ou Synopsis">
 
         <select name="id_category">
-            <option value=1>Action</option>
-            <option value=2>Comédie</option>
-            <option value=3>Drame</option>
-            <option value=4>Science-fiction</option>
-            <option value=5>Animation</option>
-            <option value=6>Thriller</option>
-            <option value=7>Horreur</option>
-            <option value=8>Fantaisie</option>
-            <option value=9>Documentaire</option>
+            {{options}}
         </select>
 
         <input required placeholder="Nom du fichier de l'affiche" type="text" name="image" title="Image">
         <input required placeholder="URL du trailer" type="text" name="trailer" title="URL du trailer">
         <input required placeholder="Age minimum" type="number" name="min_age" title="restriction age">
 
-        <input onClick="{{handler}}" type="submit" value="addmovie" name="todo">
+        <input onClick="{{handler}}" type="button" value="Ajouter" name="todo">
 
     </form>
 </div>

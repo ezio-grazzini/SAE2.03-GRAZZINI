@@ -26,6 +26,11 @@ function readMoviesController(){
     return $movies;
 }
 
+function getCategoriesController(){
+    $movies = getAllCategories();
+    return $movies;
+}
+
 function addMovieController(){
     $name = $_REQUEST['name'];
     $year = $_REQUEST['year'];
