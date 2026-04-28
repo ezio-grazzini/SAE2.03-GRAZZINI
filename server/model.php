@@ -51,7 +51,7 @@ function getMovieDetail($id){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select name, image, description, director, year, id_category, min_age, trailer from Movie WHERE id=:id";
+    $sql = "SELECT Movie.name, image, description, director, year, id_category, min_age, trailer, Category.name as name_category FROM Movie INNER JOIN Category ON Movie.id_category = Category.id WHERE Movie.id=:id";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':id', $id);

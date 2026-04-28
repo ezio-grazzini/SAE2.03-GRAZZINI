@@ -1,0 +1,30 @@
+.moviedetail{
+    font-family: var(--ff-sans);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 3rem;
+
+
+    .moviedetail__info{
+    }
+
+    .moviedetail__img-img{
+        width: 25rem;
+        aspect-ratio: 9/14;
+        object-fit: cover;
+    }
+
+    iframe{
+        border: none;
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    .moviedetail__info-name{
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+    }
+}

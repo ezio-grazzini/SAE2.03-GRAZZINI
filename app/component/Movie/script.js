@@ -23,6 +23,7 @@ MovieList.format = function (data) {
     let li = template2;
     li = li.replace("{{name}}", item.name);
     li = li.replace("{{img}}", "../server/images/" + item.image);
+    li = li.replace("{id}", item.id);
 
     liste = liste += li;
   }

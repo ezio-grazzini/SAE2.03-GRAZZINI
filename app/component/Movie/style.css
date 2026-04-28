@@ -8,6 +8,10 @@
         font-family: var(--ff-sans);
     }
 
+    .movie__list-item{
+        cursor: pointer;
+    }
+
     .movie__list-img {
         width: 100%;
         aspect-ratio: 9 / 14;
