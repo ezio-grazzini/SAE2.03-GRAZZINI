@@ -10,6 +10,7 @@ MovieForm.formatOneCategory = function(name, id){
   let option = templateOption
   option = option.replace("{{category}}", name)
   option = option.replace("{{id_category}}", id)
+  console.log("add one")
 
   return option;
 }
@@ -21,10 +22,13 @@ MovieForm.format = function (handler, categories) {
 
   let liste="";
 
-  for (let item of categories){
-    let tpl_formate = MovieForm.formatOneCategory(categories.name, categories.id_categories)
-    
+  for (let category of categories){
+    let tpl_formate = MovieForm.formatOneCategory(category.name, category.id)
+    console.log(category.name)
+    console.log(category.id)
+    liste = liste + tpl_formate
   }
+  html = html.replace("{{options}}", liste)
   return html;
 };
 

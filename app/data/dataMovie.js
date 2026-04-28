@@ -17,10 +17,11 @@ DataMovie.requestMovies = async function(){
 }
 
 DataMovie.requestMovieDetails = async function(id){
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=readMovieDetail&" . id )
+    console.log(id)
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=readMovieDetail&id=" . id )
     let data = await answer.json()
     
-    return answer
+    return data
 }
 
 export {DataMovie};

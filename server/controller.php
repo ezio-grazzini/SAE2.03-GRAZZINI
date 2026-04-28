@@ -49,3 +49,15 @@ function addMovieController(){
     return false;
     }
 }
+
+function readMovieDetailController(){
+    $id = $_REQUEST['id'];
+
+    $details = getMovieDetail($id);
+    return $details;
+    // if ($ok!=0){
+
+    // } else{
+    //     return false;
+    // }
+}
