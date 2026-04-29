@@ -15,8 +15,9 @@
 
   <script type="module">
     import { NavBar } from "./component/NavBar/script.js";
-    import { MovieList } from "./component/Movie/script.js";
+    import { Movie } from "./component/Movie/script.js";
     import { MovieDetail } from "./component/MovieDetail/script.js";
+    import { MovieCategory } from "./component/MovieCategory/script.js";
 
     import { DataMovie } from "./data/dataMovie.js"
 
@@ -51,10 +52,23 @@
       console.log(data)
     }
 
-    C.start = function () {
+    C.start = async function () {
       V.renderNavBar("C.handlerAbout()", "C.handlerHome()");
       C.getMovie()
+      let categories = await C.getCategories()
+      V.renderMovieCategory(categories)
     };
+
+    C.getCategories = async function (){
+      let data = await DataMovie.requestCategories();
+      let movies = await DataMovie.requestMovies();
+
+      for(let category of data){
+        data.movies = movies.filter(movie => movie.name_category == data.name)
+      }
+      V.renderMovieCategory(data)
+      return data;
+    }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
     window.V = {};
@@ -73,12 +87,17 @@
 
     V.renderMovies = function (data) {
       let content = document.querySelector("#content");
-      content.innerHTML = MovieList.format(data)
+      content.innerHTML = Movie.format(data)
     }
 
     V.renderMovieDetail = function (data) {
       let content = document.querySelector("#content");
       content.innerHTML = MovieDetail.format(data)
+    }
+
+    V.renderMovieCategory = function (data) {
+      let content = document.querySelector("#content");
+      content.innerHTML = MovieCategory.format(data)
     }
 
     C.start(); // Démarre l'application

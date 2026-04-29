@@ -4,7 +4,7 @@ let template = await templateFile.text();
 let templateFile2 = await fetch("./component/Movie/templateLi.html");
 let template2 = await templateFile2.text();
 
-let MovieList = {};
+let Movie = {};
 
 // MovieList.formatOneMenu = function(name, img){
 //     let li = template2;
@@ -14,7 +14,7 @@ let MovieList = {};
 //     return li;
 // }
 
-MovieList.format = function (data) {
+Movie.format = function (data) {
   let html = template;
 
   let liste="";
@@ -31,9 +31,4 @@ MovieList.format = function (data) {
   return html;
 };
 
-MovieList.render = function(where, what){
-    let element = document.querySelector(where)
-    element.innerHTML += MovieList.format(what);
-}
-
-export { MovieList };
+export { Movie };
