@@ -11,12 +11,15 @@
 <body>
   <section id="log"></section>
   <section id="content"></section>
+  <section id="contentprofile"></section>
 
   <script type="module">
     import { Log } from "./component/Log/script.js";
     import { MovieForm } from "./component/MovieForm/script.js"
+    import { ProfileForm } from "./component/ProfileForm/script.js"
 
     import { DataMovie } from "./data/dataMovie.js"
+    import { DataProfile } from "./data/dataProfile.js"
 
 
     window.C = {};
@@ -24,13 +27,13 @@
       V.renderLog("Démarrage de l'application");
       let categories = await C.getCategories()
       V.renderMovieForm("C.handlerAddMovie()", categories)
+      V.renderProfileForm("C.handlerAddProfile()")
     };
 
     C.getCategories = async function (){
       let data = await DataMovie.requestCategories();
       return data;
     }
-
 
     C.handlerAddMovie = async function () {
       let form = document.querySelector('.movieform__form');
@@ -42,6 +45,17 @@
       V.renderLog(res);
     }
 
+    C.handlerAddProfile = async function () {
+      let form = document.querySelector('.profileform__form');
+      if (!form.reportValidity()){
+        return;
+      }
+      let fd = new FormData(form);
+      let res = await DataProfile.add(fd);
+      V.renderLog(res);
+    }
+    
+
     window.V = {};
 
     V.renderLog = function (txt) {
@@ -52,6 +66,11 @@
     V.renderMovieForm = function (handler, categories) {
       let content = document.querySelector("#content");
       content.innerHTML = MovieForm.format(handler, categories)
+    }
+
+    V.renderProfileForm = function (handler) {
+      let content = document.querySelector("#contentprofile");
+      content.innerHTML = ProfileForm.format(handler)
     }
 
     C.start();

@@ -1,0 +1,12 @@
+body{
+    font-family: var(--ff-sans);
+}
+
+.movieform__form{
+    display: flex;
+    flex-direction: column;
+    font-family: var(--ff-sans);
+    gap: 1rem;
+    max-width: 40rem;
+}
+
