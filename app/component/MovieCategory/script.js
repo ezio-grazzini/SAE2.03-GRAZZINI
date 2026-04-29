@@ -8,27 +8,28 @@ let templateCategory = await templateFile2.text();
 
 let MovieCategory = {};
 
-MovieCategory.formatOneCategory = function(name, category){
+MovieCategory.formatOneCategory = function(name, moviesHTML){
   let Category = templateCategory;
   Category = Category.replace("{{name}}", name);
-  console.log(category)
-  if (category.Movie){
-    console.log(name.Movie)
-    let moviesHTML = Movie.format(name.Movie);
-    Category = Category.replace("{{movies}}", moviesHTML);
-  }
+  Category = Category.replace("{{movies}}", moviesHTML)
   
   return Category;
 }
 
-MovieCategory.format = function (categories) {
+MovieCategory.format = function (categories, movies) {
   let html = template;
-  console.log(categories)
   let liste="";
 
   for (let category of categories){
-    let tpl_formate = MovieCategory.formatOneCategory(category.name, category)
-    console.log(category.name)
+    let moviesHTML = ""
+
+    for (let movie of movies){
+      if (movie.name_category == category.name){
+        moviesHTML += Movie.format(movie)
+      }
+    }
+
+    let tpl_formate = MovieCategory.formatOneCategory(category.name, moviesHTML)
     liste = liste + tpl_formate
   }
   

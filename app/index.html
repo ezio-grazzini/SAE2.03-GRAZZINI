@@ -27,7 +27,7 @@
     window.C = {};
 
     C.getMovie = async function () {
-      let data = await DataMovie.requestMovies();
+      // let data = await DataMovie.requestMovies();
 
       if (data.length == 0) {
         alert("Aucun film disponible pour le moment.");
@@ -54,20 +54,18 @@
 
     C.start = async function () {
       V.renderNavBar("C.handlerAbout()", "C.handlerHome()");
-      C.getMovie()
-      let categories = await C.getCategories()
-      V.renderMovieCategory(categories)
+      // C.getMovie()
+      await C.getCategories()
     };
 
     C.getCategories = async function (){
-      let data = await DataMovie.requestCategories();
+      let categories = await DataMovie.requestCategories();
       let movies = await DataMovie.requestMovies();
+      // for(let category of data){
+      //   data.movies = movies.filter(movie => movie.name_category == data.name)
+      // }
 
-      for(let category of data){
-        data.movies = movies.filter(movie => movie.name_category == data.name)
-      }
-      V.renderMovieCategory(data)
-      return data;
+      V.renderMovieCategory(categories, movies)
     }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
@@ -95,9 +93,9 @@
       content.innerHTML = MovieDetail.format(data)
     }
 
-    V.renderMovieCategory = function (data) {
+    V.renderMovieCategory = function (categories, movies) {
       let content = document.querySelector("#content");
-      content.innerHTML = MovieCategory.format(data)
+      content.innerHTML = MovieCategory.format(categories, movies)
     }
 
     C.start(); // Démarre l'application

@@ -1,5 +1,4 @@
 .movie {
-    background-color: yellow;
     .movie__list {
         display: grid;
         grid-template-columns: 1fr;
