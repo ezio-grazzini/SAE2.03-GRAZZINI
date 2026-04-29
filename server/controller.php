@@ -74,3 +74,8 @@ function readMovieDetailController(){
     //     return false;
     // }
 }
+
+function readProfilesController(){
+    $profiles = getAllProfiles();
+    return $profiles;
+}
