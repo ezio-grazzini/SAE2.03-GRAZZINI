@@ -18,13 +18,17 @@
     import { Movie } from "./component/Movie/script.js";
     import { MovieDetail } from "./component/MovieDetail/script.js";
     import { MovieCategory } from "./component/MovieCategory/script.js";
+    import { Profile } from "./component/Profile/script.js";
 
     import { DataMovie } from "./data/dataMovie.js"
+    import { DataProfile } from "./data/dataProfile.js"
 
     // Controleur
     // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
     // Une fois l'application terminée, on pourrait remettre let C.
     window.C = {};
+
+    let currentId = "";
 
     C.getMovie = async function () {
       // let data = await DataMovie.requestMovies();
@@ -43,6 +47,10 @@
     };
 
     C.handlerHome = function () {
+      C.getCategories()
+    };
+
+    C.handlerProfile = function () {
       C.start()
     };
 
@@ -53,19 +61,29 @@
     }
 
     C.start = async function () {
-      V.renderNavBar("C.handlerAbout()", "C.handlerHome()");
       // C.getMovie()
-      await C.getCategories()
+      // await C.getCategories()
+      await C.getProfile("C.handlerProfileSelect()")
     };
 
     C.getCategories = async function (){
       let categories = await DataMovie.requestCategories();
       let movies = await DataMovie.requestMovies();
-      // for(let category of data){
-      //   data.movies = movies.filter(movie => movie.name_category == data.name)
-      // }
 
       V.renderMovieCategory(categories, movies)
+    }
+
+    C.getProfile = async function(handler){
+      let profiles = await DataProfile.read()
+      V.renderProfile(handler, profiles)
+    }
+
+    C.handlerProfileSelect = async function(id){
+      C.getCategories()
+      console.log(id)
+      currentId = id
+      console.log(currentId)
+      V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
     }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
@@ -78,9 +96,9 @@
      * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
      * formaté par le composant NavBar.
      */
-    V.renderNavBar = function (hAbout, hHome) {
+    V.renderNavBar = function (hAbout, hHome, hProfile) {
       let header = document.querySelector("#header");
-      header.innerHTML = NavBar.format(hAbout, hHome);
+      header.innerHTML = NavBar.format(hAbout, hHome, hProfile);
     };
 
     V.renderMovies = function (data) {
@@ -96,6 +114,11 @@
     V.renderMovieCategory = function (categories, movies) {
       let content = document.querySelector("#content");
       content.innerHTML = MovieCategory.format(categories, movies)
+    }
+
+    V.renderProfile = function (handler, profile) {
+      let content = document.querySelector("#content");
+      content.innerHTML = Profile.format(handler, profile)
     }
 
     C.start(); // Démarre l'application

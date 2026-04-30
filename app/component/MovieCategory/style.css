@@ -1,0 +1,20 @@
+.moviecategories{
+    padding: 3rem;
+}
+
+.moviecategory__container{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.moviecategory__item{
+    padding-bottom: 2rem;
+}
+
+.moviecategory__title{
+    font-size: 3rem;
+    font-family: var(--ff-sans);
+    padding: 0;
+    margin: 0;
+}

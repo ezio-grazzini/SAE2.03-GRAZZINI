@@ -1,0 +1,23 @@
+.Profile__list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10rem;
+    gap: 2rem;
+    font-family: var(--ff-sans);
+}
+
+.Profile__list-item{
+    cursor: pointer;
+}
+
+.Profile__list-img{
+    border-radius: 10rem;
+}
+
+.Profile__list-img{
+    width: 10rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
