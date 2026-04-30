@@ -13,7 +13,6 @@ DataProfile.read = async function(){
     // Ces données (data) sont automatiquement converties en objet JavaScript.
     let data = await answer.json();
     // Enfin, on retourne ces données.
-    console.log(data)
     return data;
 }
 

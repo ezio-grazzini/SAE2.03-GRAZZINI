@@ -19,13 +19,14 @@ define("DBLOGIN", "grazzini2");
 define("DBPWD", "grazzini2");
 
 
-function getAllMovies(){
+function getAllMovies($age){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "SELECT Movie.name, Movie.id AS id, image, id_category, Category.name AS name_category FROM Movie INNER JOIN Category ON Movie.id_category = Category.id";
+    $sql = "SELECT Movie.name, Movie.id AS id, image, id_category, min_age, Category.name AS name_category FROM Movie INNER JOIN Category ON Movie.id_category = Category.id WHERE Movie.min_age<=:age";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':age', $age);
     // Exécute la requête SQL
     $stmt->execute();
     // Récupère les résultats de la requête sous forme d'objets

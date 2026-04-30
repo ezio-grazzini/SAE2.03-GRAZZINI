@@ -1,14 +1,11 @@
 .moviedetail{
     font-family: var(--ff-sans);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     gap: 2rem;
     padding-top: 3rem;
-
-
-    .moviedetail__info{
-    }
+    max-width: 75rem;
+    margin: auto;
 
     .moviedetail__img-img{
         width: 25rem;

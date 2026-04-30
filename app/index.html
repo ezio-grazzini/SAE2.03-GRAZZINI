@@ -28,7 +28,8 @@
     // Une fois l'application terminée, on pourrait remettre let C.
     window.C = {};
 
-    let currentId = "";
+    let currentId = 0;
+    let currentAge = 0;
 
     C.getMovie = async function () {
       // let data = await DataMovie.requestMovies();
@@ -47,7 +48,7 @@
     };
 
     C.handlerHome = function () {
-      C.getCategories()
+      C.getCategories(currentAge)
     };
 
     C.handlerProfile = function () {
@@ -57,7 +58,6 @@
     C.handlerDetail = async function(id){
       let data = await DataMovie.requestMovieDetails(id)
       V.renderMovieDetail(data)
-      console.log(data)
     }
 
     C.start = async function () {
@@ -66,9 +66,9 @@
       await C.getProfile("C.handlerProfileSelect()")
     };
 
-    C.getCategories = async function (){
+    C.getCategories = async function (age){
       let categories = await DataMovie.requestCategories();
-      let movies = await DataMovie.requestMovies();
+      let movies = await DataMovie.requestMovies(age);
 
       V.renderMovieCategory(categories, movies)
     }
@@ -78,9 +78,11 @@
       V.renderProfile(handler, profiles)
     }
 
-    C.handlerProfileSelect = async function(id){
-      C.getCategories()
+    C.handlerProfileSelect = async function(id, age){
+      currentAge = age
+      C.getCategories(currentAge)
       console.log(id)
+      console.log(age)
       currentId = id
       console.log(currentId)
       V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");

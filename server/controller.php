@@ -22,7 +22,9 @@ require("model.php");
 
 
 function readMoviesController(){
-    $movies = getAllMovies();
+    $age = $_REQUEST['age'];
+    
+    $movies = getAllMovies($age);
     return $movies;
 }
 
@@ -68,11 +70,6 @@ function readMovieDetailController(){
 
     $details = getMovieDetail($id);
     return $details;
-    // if ($ok!=0){
-
-    // } else{
-    //     return false;
-    // }
 }
 
 function readProfilesController(){

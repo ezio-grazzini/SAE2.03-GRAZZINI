@@ -6,11 +6,12 @@ let templateProfile = await templateFile2.text();
 
 let Profile = {};
 
-Profile.formatOneProfile = function(name, avatar, handler){
+Profile.formatOneProfile = function(name, avatar, handler, min_age){
   let oneProfile = templateProfile
   oneProfile = oneProfile.replace("{{name}}", name)
   oneProfile = oneProfile.replace("{{avatar}}", "../server/avatars/" + avatar)
   oneProfile = oneProfile.replace("{id}", handler)
+  oneProfile = oneProfile.replace("{age}", min_age)
 
   return oneProfile;
 }
@@ -20,7 +21,7 @@ Profile.format = function (handler, profiles) {
   let liste="";
 
   for (let profile of profiles){
-    let tpl_formate = Profile.formatOneProfile(profile.name, profile.avatar, profile.id)
+    let tpl_formate = Profile.formatOneProfile(profile.name, profile.avatar, profile.id, profile.min_age)
     liste = liste + tpl_formate
   }
   html = html.replace("{{Profiles}}", liste)
