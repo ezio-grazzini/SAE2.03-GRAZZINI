@@ -69,8 +69,12 @@
     C.getCategories = async function (age){
       let categories = await DataMovie.requestCategories();
       let movies = await DataMovie.requestMovies(age);
-
-      V.renderMovieCategory(categories, movies)
+      if (movies.length == 0) {
+        alert("Aucun film disponible pour votre tranche d'âge");
+      } else {
+        V.renderMovieCategory(categories, movies)
+        V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
+      }
     }
 
     C.getProfile = async function(handler){
@@ -81,11 +85,7 @@
     C.handlerProfileSelect = async function(id, age){
       currentAge = age
       C.getCategories(currentAge)
-      console.log(id)
-      console.log(age)
       currentId = id
-      console.log(currentId)
-      V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
     }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
