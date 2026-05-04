@@ -60,7 +60,11 @@ function addProfileController(){
 
     $ok = addProfile($name, $avatar, $min_age, $id);
     if ($ok!=0){
-        return "Le profil a été ajouté avec succès.";
+        if ($id==0){
+            return "Le profil a été ajouté avec succès.";
+        }else {
+            return "Le profil a été modifié avec succès.";
+        }
     } else{
     return false;
     }

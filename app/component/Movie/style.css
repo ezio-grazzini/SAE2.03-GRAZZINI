@@ -31,7 +31,6 @@
 }
 
 .moviecard__container{
-    cursor: pointer;
 
 }
 
@@ -40,6 +39,7 @@
     aspect-ratio: 9/14;
     object-fit: cover;
     border-radius: 0.5rem;
+        cursor: pointer;
 }
 
 .moviecard__container-name{

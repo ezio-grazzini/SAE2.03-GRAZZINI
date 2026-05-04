@@ -1,9 +1,10 @@
-<li class="moviecard" onclick="C.handlerDetail({id})">
+<li class="moviecard">
     <div class="moviecard__container">
         <div>
-            <img class="moviecard__container-img alt="movie image" src="{{img}}">
+            <img class="moviecard__container-img alt="movie image" src="{{img}}" onclick="C.handlerDetail({id})">
         </div>
         <h3 class="moviecard__container-name">{{name}}</h3>
+        <p>ajouter le film ao favorite</p>
     </div>
 
 </li>
