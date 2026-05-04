@@ -1,8 +1,14 @@
 <div class="profileform">
-    <h4 class="profileform__title">Ajouter un profil</h4>
+    <h4 class="profileform__title">Ajouter ou modifier un profil</h4>
     <form class="profileform__form">
+
+        <select name="id">
+            <option value="0">Nouveau Profil</option>
+            {{options}}
+        </select>
+
         <input required placeholder="Nom" type="text" name="name" title="Nom du profil">
-        <input required placeholder="Avatar" type="text" name="avatar" title="Avatar du profil">
+        <input placeholder="Avatar" type="text" name="avatar" title="Avatar du profil (Facultatif)">
         <input required placeholder="Age minimum" type="number" name="min_age" title="restriction age">
 
         <input onClick="{{handler}}" type="button" value="Ajouter" name="todo">

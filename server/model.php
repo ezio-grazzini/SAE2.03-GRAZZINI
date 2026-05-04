@@ -98,15 +98,16 @@ function addMovies($n, $y, $l, $d, $dir, $im, $i, $t, $m ){
     return $res;
 }
 
-function addProfile($n, $a, $m){
+function addProfile($n, $a, $m, $id){
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD); 
-    $sql = "INSERT INTO Profile (name, avatar, min_age)
-            VALUES (:name, :avatar, :min_age)";
+    $sql = "REPLACE INTO Profile (id, name, avatar, min_age)
+            VALUES (:id, :name, :avatar, :min_age)";
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':name', $n);
     $stmt->bindParam(':avatar', $a);
     $stmt->bindParam(':min_age', $m);
-    
+    $stmt->bindParam(':id', $id);
+
     $stmt->execute();
     $res = $stmt->rowCount();
 
