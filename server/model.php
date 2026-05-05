@@ -113,3 +113,32 @@ function addProfile($n, $a, $m, $id){
 
     return $res;
 }
+
+function addFavorite($movie_id, $profile_id){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD); 
+    $sql = "INSERT INTO Favorites (movie_id, profile_id)
+            VALUES (:movie_id, :profile_id)";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':movie_id', $movie_id);
+    $stmt->bindParam(':profile_id', $profile_id);
+
+    $stmt->execute();
+    $res = $stmt->rowCount();
+
+    return $res;
+}
+
+function getAllFavorites($id){
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    // Requête SQL pour récupérer le menu avec des paramètres
+    $sql = "SELECT Movie.id, Movie.name, Movie.image FROM Favorites INNER JOIN Movie ON Favorites.movie_id=Movie.id WHERE Favorites.profile_id=:id;";
+    // Prépare la requête SQL
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    // Exécute la requête SQL
+    $stmt->execute();
+    // Récupère les résultats de la requête sous forme d'objets
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; // Retourne les résultats
+}

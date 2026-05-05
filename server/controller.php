@@ -70,6 +70,22 @@ function addProfileController(){
     }
 }
 
+function addFavoriteController(){
+    $movie_id = $_REQUEST['movie_id'];
+    $profile_id = $_REQUEST['profile_id'];
+
+    $favorites = addFavorite($movie_id, $profile_id);
+    return $favorites;
+}
+
+function readFavoritesController(){    
+    $id = $_REQUEST['id'];
+
+    $favorites = getAllFavorites($id);
+    return $favorites;
+}
+
+
 function readMovieDetailController(){
     $id = $_REQUEST['id'];
 
@@ -81,3 +97,4 @@ function readProfilesController(){
     $profiles = getAllProfiles();
     return $profiles;
 }
+

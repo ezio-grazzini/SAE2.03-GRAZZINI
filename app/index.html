@@ -19,9 +19,11 @@
     import { MovieDetail } from "./component/MovieDetail/script.js";
     import { MovieCategory } from "./component/MovieCategory/script.js";
     import { Profile } from "./component/Profile/script.js";
+    import { Favorites } from "./component/Favorites/script.js";
 
     import { DataMovie } from "./data/dataMovie.js"
     import { DataProfile } from "./data/dataProfile.js"
+    import { DataFavorites } from "./data/dataFavorites.js"
 
     // Controleur
     // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -55,37 +57,61 @@
       C.start()
     };
 
-    C.handlerDetail = async function(id){
+    C.handlerFavorites = function () {
+      C.getFavorites(currentId)
+    };
+
+    C.handlerDetail = async function (id) {
       let data = await DataMovie.requestMovieDetails(id)
       V.renderMovieDetail(data)
     }
 
     C.start = async function () {
-      // C.getMovie()
-      // await C.getCategories()
       await C.getProfile("C.handlerProfileSelect()")
     };
 
-    C.getCategories = async function (age){
+    C.getCategories = async function (age) {
       let categories = await DataMovie.requestCategories();
       let movies = await DataMovie.requestMovies(age);
       if (movies.length == 0) {
         alert("Aucun film disponible pour votre tranche d'âge");
       } else {
-        V.renderMovieCategory(categories, movies)
-        V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()");
+        V.renderMovieCategory(categories, movies, currentId)
+        V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()", "C.handlerFavorites()");
       }
     }
 
-    C.getProfile = async function(handler){
+    C.getProfile = async function (handler) {
       let profiles = await DataProfile.read()
       V.renderProfile(handler, profiles)
     }
 
-    C.handlerProfileSelect = async function(id, age){
+    C.handlerProfileSelect = async function (id, age) {
       currentAge = age
       C.getCategories(currentAge)
       currentId = id
+      C.read
+
+    }
+
+    C.addFavorites = async function (movie_id) {
+      let Favorites = await DataFavorites.read(currentId)
+      let Favorited = Favorites.some(fav => fav.id == movie_id)
+      
+      if (Favorited) {
+        console.log("Le film est déjà en favoris")
+      } else {
+        alert(
+          "Le film a été ajouté à vos favoris"
+        );
+        await DataFavorites.add(movie_id, currentId)
+      }
+    }
+
+    C.getFavorites = async function (id) {
+      let favorites = await DataFavorites.read(id)
+      console.log(favorites)
+      V.renderFavorites(favorites)
     }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
@@ -98,9 +124,9 @@
      * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
      * formaté par le composant NavBar.
      */
-    V.renderNavBar = function (hAbout, hHome, hProfile) {
+    V.renderNavBar = function (hAbout, hHome, hProfile, hFavorites) {
       let header = document.querySelector("#header");
-      header.innerHTML = NavBar.format(hAbout, hHome, hProfile);
+      header.innerHTML = NavBar.format(hAbout, hHome, hProfile, hFavorites);
     };
 
     V.renderMovies = function (data) {
@@ -121,6 +147,11 @@
     V.renderProfile = function (handler, profile) {
       let content = document.querySelector("#content");
       content.innerHTML = Profile.format(handler, profile)
+    }
+
+    V.renderFavorites = function (movies) {
+      let content = document.querySelector("#content");
+      content.innerHTML = Favorites.format(movies)
     }
 
     C.start(); // Démarre l'application

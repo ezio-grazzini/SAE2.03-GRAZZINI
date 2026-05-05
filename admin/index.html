@@ -22,6 +22,8 @@
     import { DataMovie } from "./data/dataMovie.js"
     import { DataProfile } from "./data/dataProfile.js"
 
+    let currentId = ""
+
     window.C = {};
     C.start = async function () {
       V.renderLog("Démarrage de l'application");
@@ -39,7 +41,7 @@
       let profiles = await DataProfile.read()
       V.renderProfileForm(handler, profiles)
     }
-
+    
     C.handlerAddMovie = async function () {
       let form = document.querySelector('.movieform__form');
       if (!form.reportValidity()){

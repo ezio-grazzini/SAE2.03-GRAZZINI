@@ -7,7 +7,7 @@ Movie.format = function (data) {
   let html = template;
   html = html.replace("{{name}}", data.name);
   html = html.replace("{{img}}", "../server/images/" + data.image);
-  html = html.replace("{id}", data.id);
+  html = html.replaceAll("{id}", data.id);
 
   return html;
 };

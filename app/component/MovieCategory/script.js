@@ -16,7 +16,7 @@ MovieCategory.formatOneCategory = function(name, moviesHTML){
   return Category;
 }
 
-MovieCategory.format = function (categories, movies) {
+MovieCategory.format = function (categories, movies, id) {
   let html = template;
   let liste="";
 
