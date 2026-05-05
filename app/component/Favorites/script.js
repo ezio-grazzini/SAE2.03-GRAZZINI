@@ -12,7 +12,7 @@ Favorites.formatOneFavorite = function(name, image, id){
   let oneFavorite = templateFavorite
   oneFavorite = oneFavorite.replace("{{name}}", name)
   oneFavorite = oneFavorite.replace("{{img}}", "../server/images/" + image)
-  oneFavorite = oneFavorite.replace("{id}", id)
+  oneFavorite = oneFavorite.replaceAll("{id}", id)
 
   return oneFavorite;
 }

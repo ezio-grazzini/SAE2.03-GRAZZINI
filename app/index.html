@@ -74,7 +74,7 @@
       let categories = await DataMovie.requestCategories();
       let movies = await DataMovie.requestMovies(age);
       if (movies.length == 0) {
-        alert("Aucun film disponible pour votre tranche d'âge");
+        alert("Aucun film disponible pour votre tranche d'âge.");
       } else {
         V.renderMovieCategory(categories, movies, currentId)
         V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()", "C.handlerFavorites()");
@@ -97,10 +97,8 @@
     C.addFavorites = async function (movie_id) {
       let Favorites = await DataFavorites.read(currentId)
       let Favorited = Favorites.some(fav => fav.id == movie_id)
-      
-      if (Favorited) {
-        console.log("Le film est déjà en favoris")
-      } else {
+
+      if (!Favorited) {
         alert(
           "Le film a été ajouté à vos favoris"
         );
@@ -108,9 +106,20 @@
       }
     }
 
+    C.removeFavorites = async function (movie_id) {
+      let Favorites = await DataFavorites.read(currentId)
+      await DataFavorites.remove(movie_id, currentId)
+      alert(
+        "Le film a été retiré de vos favoris."
+      );
+      C.getFavorites()
+    }
+
     C.getFavorites = async function (id) {
       let favorites = await DataFavorites.read(id)
-      console.log(favorites)
+      if (favorites.length == 0) {
+        alert("Votre liste de favoris est vide.");
+      }
       V.renderFavorites(favorites)
     }
 

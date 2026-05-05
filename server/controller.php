@@ -98,3 +98,11 @@ function readProfilesController(){
     return $profiles;
 }
 
+function removeFavoriteController(){
+    $movie_id = $_REQUEST['movie_id'];
+    $profile_id = $_REQUEST['profile_id'];
+
+    $favorites = removeFavorite($movie_id, $profile_id);
+    return $favorites;
+}
+
