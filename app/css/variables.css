@@ -1,15 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
   /* Primitive Tokens */
-  --color-black: hsl(253, 69%, 8%);
+  --color-black: hsl(0, 0%, 8%);
   --color-white: hsl(0, 0%, 100%);
   --color-gray-light: hsl(0, 0%, 80%);
-  --color-gray: hsl(0, 0%, 50%);
+  --color-gray: hsl(0, 0%, 80%);
   --color-gray-dark: hsl(0, 0%, 20%);
+  --color-blue: hsl(204, 99%, 47%);
+  --color-blue-dark: hsl(216, 86%, 43%);
+  --color-green: hsl(150, 100%, 43%);
+
+  --gradient-blue: linear-gradient(100deg, var(--color-blue), var(--color-blue-dark));
+  --gradient-blue-hover: linear-gradient(120deg, var(--color-blue-dark), var(--color-blue));
+
   --ff-sans: "DM sans", sans-serif;
+  --ff-sans-secondary: "Inter", sans-serif;
 
   /* Sementic Tokens */
   --color-fg: var(--color-white);
-  --color-bg: var(--color-gray-dark);
+  --color-fg-secondary: var(--color-green);
+  --color-bg: var(--color-black);
+
+  --fs-small: 0.84rem;
+  --fs-text: 1.25rem;
+  --fs-text2: 1.125rem;
+  --fs-title: 3.75rem;
+
+  --fw-600: 600;
+  --fw-300: 300;
 }

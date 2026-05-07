@@ -9,3 +9,9 @@
 @import "../component/MovieDetail/style.css" layer(components);
 @import "../component/MovieCategory/style.css" layer(components);
 @import "../component/Profile/style.css" layer(components);
+@import "../component/Favorites/style.css" layer(components);
+
+body{
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}

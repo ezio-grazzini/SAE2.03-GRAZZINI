@@ -1,0 +1,37 @@
+.favorites {
+    padding: 0.5rem 6rem;
+
+    .favorites__list {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .moviecard__container-btn {
+        position: absolute;
+        bottom: 1rem;
+        left: 1em;
+
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: var(--fs-small);
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        background: var(--gradient-blue);
+        font-weight: var(--fw-300);
+        border: none;
+        color: var(--color-white);
+
+        &:hover {
+            background: var(--gradient-blue-hover)
+        }
+    }
+
+
+    @media (min-width: 44rem) {
+        .movie__list {
+            flex-direction: column;
+        }
+    }
+}

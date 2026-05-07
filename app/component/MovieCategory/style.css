@@ -1,20 +1,37 @@
-.moviecategories{
-    padding: 3rem;
+.moviecategories {
+    padding: 0.5rem 1rem;
+
+    .moviecategory__container {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-color: rgba(255,255,255,0.25) transparent;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .moviecategory__item {
+        padding-bottom: 2rem;
+    }
+
+    .moviecategory__title {
+        font-size: var(--fs-text);
+        font-family: var(--ff-sans-secondary);
+        padding: 0.5rem 0;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    @media (min-width: 44rem) {
+        .movie__list {
+        }
+    }
 }
 
-.moviecategory__container{
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-}
-
-.moviecategory__item{
-    padding-bottom: 2rem;
-}
-
-.moviecategory__title{
-    font-size: 3rem;
-    font-family: var(--ff-sans);
-    padding: 0;
-    margin: 0;
+@media (min-width: 44rem) {
+    .moviecategories {
+        padding: 0.5rem 6rem;
+    }
 }

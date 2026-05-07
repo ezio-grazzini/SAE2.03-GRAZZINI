@@ -34,20 +34,12 @@
     let currentAge = 0;
 
     C.getMovie = async function () {
-      // let data = await DataMovie.requestMovies();
-
       if (data.length == 0) {
         alert("Aucun film disponible pour le moment.");
       } else {
         V.renderMovies(data);
       }
     }
-
-    C.handlerAbout = function () {
-      alert(
-        "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
-      );
-    };
 
     C.handlerHome = function () {
       C.getCategories(currentAge)
@@ -77,7 +69,7 @@
         alert("Aucun film disponible pour votre tranche d'âge.");
       } else {
         V.renderMovieCategory(categories, movies, currentId)
-        V.renderNavBar("C.handlerAbout()", "C.handlerHome()", "C.handlerProfile()", "C.handlerFavorites()");
+        V.renderNavBar("C.handlerHome()", "C.handlerProfile()", "C.handlerFavorites()");
       }
     }
 
@@ -107,7 +99,6 @@
     }
 
     C.removeFavorites = async function (movie_id) {
-      let Favorites = await DataFavorites.read(currentId)
       await DataFavorites.remove(movie_id, currentId)
       alert(
         "Le film a été retiré de vos favoris."
@@ -115,12 +106,13 @@
       C.getFavorites()
     }
 
-    C.getFavorites = async function (id) {
-      let favorites = await DataFavorites.read(id)
+    C.getFavorites = async function () {
+      let favorites = await DataFavorites.read(currentId)
       if (favorites.length == 0) {
         alert("Votre liste de favoris est vide.");
+      }else{
+        V.renderFavorites(favorites)
       }
-      V.renderFavorites(favorites)
     }
 
     // Vue (contient tout ce qui est relatif à l'affichage)
@@ -133,9 +125,9 @@
      * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
      * formaté par le composant NavBar.
      */
-    V.renderNavBar = function (hAbout, hHome, hProfile, hFavorites) {
+    V.renderNavBar = function (hHome, hProfile, hFavorites) {
       let header = document.querySelector("#header");
-      header.innerHTML = NavBar.format(hAbout, hHome, hProfile, hFavorites);
+      header.innerHTML = NavBar.format(hHome, hProfile, hFavorites);
     };
 
     V.renderMovies = function (data) {
